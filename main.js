@@ -42,9 +42,15 @@ while(current_time < CUTOFF_TIME){
         total_weight = parseFloat(total_weight.toFixed(2))
         total_value = parseFloat(total_value.toFixed(2))
 
-        console.log(`The time is ${current_time}00 hours. So far you've caught:\n${fish_array.length} fish, ${total_weight} lbs, $${total_value}\n`)
+        console.log(`The time is ${current_time} hours. So far you've caught:\n${fish_array.length} fish, ${total_weight} lbs, $${total_value}\n`)
 
         let fish_caught = Math.floor(Math.random() * POSSIBLE_FISH.length)
+
+        let time_passed_rng = Math.floor(Math.random() * 90)
+
+        let time_passed = time_passed_rng * .01666667
+
+        current_time = parseFloat((current_time + time_passed).toFixed(2))
 
         let fish_name = POSSIBLE_FISH[fish_caught].fish_name
 
@@ -54,7 +60,9 @@ while(current_time < CUTOFF_TIME){
 
         let value = parseFloat((fish_caught_weight * POSSIBLE_FISH[fish_caught].price_per_pound).toFixed(2))
 
-        console.log(`You caught a '${fish_name}' weighing ${fish_caught_weight} lb(s) and valued at $${value}\n`)
+        console.log(`You caught a '${fish_name}' weighing ${fish_caught_weight} lb(s) and valued at $${value} that took ${time_passed_rng} minutes to catch.\n`)
+        console.log(time_passed_rng, time_passed)
+        console.log(current_time)
 
         if(total_weight + fish_caught_weight > MAX_WEIGHT){
             console.log(`This fish would put you over ${MAX_WEIGHT} lbs, so you release it.`)
@@ -62,7 +70,7 @@ while(current_time < CUTOFF_TIME){
             console.log(SEPARATORS)
         }
         else if (fish_caught_weight < fish_min_weight){
-            console.log("This little feller isn't big enough. So you throw it back.")
+            console.log("This is just a little feller. So you throw it back.")
             prompt('Press [enter] to continue\n')
             console.log(SEPARATORS)
         }
@@ -92,10 +100,7 @@ while(current_time < CUTOFF_TIME){
                 console.log('Error: Input not recognized')
             }
         }
-
-
     }
-    current_time ++
 }
 
 function find_total_weight(){
@@ -105,4 +110,3 @@ function find_total_weight(){
     }
     return res
 }
-
