@@ -2,9 +2,9 @@ const prompt = require('prompt-sync')({sigint: true});
 
 const SEPARATORS = '==========================================\n'
 
-const MAX_WEIGHT = 50
+const MAX_WEIGHT = 10
 
-const CUTOFF_TIME = 23
+const CUTOFF_TIME = 13
 
 console.log(`You've gone fishing! Try to maximize the value of your caught fish. You can fish for 18 hours (til 2400 hours) and can catch at most ${MAX_WEIGHT} lbs of fish.\n`)
 
